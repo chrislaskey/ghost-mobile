@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+kill $(lsof -n -i4TCP:8081)
+node node_modules/react-native/local-cli/cli.js start "$@"
