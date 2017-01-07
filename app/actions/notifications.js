@@ -1,4 +1,7 @@
+import { shortUuid } from "../helpers/uuid"
+
 export const createNotification = (eventId, timestamp) => {
+  const id = shortUuid()
   // const PushNotification = require("../app/PushNotification").default
 
   // const notification = PushNotification.localNotificationSchedule({
@@ -6,16 +9,21 @@ export const createNotification = (eventId, timestamp) => {
   //   date: new Date(Date.now() + (5 * 1000))
   // })
 
+  const entry = {
+    id,
+    eventId,
+    // notification
+    timestamp
+  }
+
   return {
     type: "CREATE_NOTIFICATION",
-    eventId,
-    // id
-    // notification,
-    timestamp
+    key: id,
+    value: entry
   }
 }
 
-export const deleteNotification = (notification) => (
+export const deleteNotification = (notification) => {
   // const PushNotification = require("../app/PushNotification").default
 
   // TODO: need to determine notification id so it can be passed:
@@ -28,4 +36,4 @@ export const deleteNotification = (notification) => (
     type: "DELETE_NOTIFICATION",
     id: notification.id
   }
-)
+}

@@ -1,6 +1,6 @@
 import { map, times } from "lodash"
-import { createNotification } from "./notifications"
-import { getActiveNotificationsByEventId } from "../reducers/notifications"
+import { createNotification, deleteNotification } from "./notifications"
+import { getActiveNotifications } from "../reducers/notifications"
 
 export const addEvent = (name) => ({
   type: "ADD_EVENT",
@@ -11,7 +11,7 @@ export const addEvent = (name) => ({
 export const startEvent = (event) => (dispatch) => {
   const { interval, repeat } = event
   const timestamps = times(repeat || 1, i =>
-    Date.now() + (i * interval)
+    Date.now() + ((i + 1) * interval)
   )
 
   dispatch(stopEvent(event))
@@ -23,9 +23,9 @@ export const startEvent = (event) => (dispatch) => {
   )
 }
 
-export const stopEvent = (event) =>  (dispatch, getState) => {
+export const stopEvent = (event) => (dispatch, getState) => {
   const state = getState()
-  const notifications = getActiveNotificationsByEventId(state, eventId)
+  const notifications = getActiveNotifications(state, event.id)
 
   map(notifications, (notification) => {
     dispatch(

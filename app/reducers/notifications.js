@@ -1,28 +1,33 @@
-const notificationsReducer = (state = [], action) => {
+import { find, filter, omit } from "lodash"
+
+const notificationsReducer = (state = {}, action) => {
   switch (action.type) {
     case "CREATE_NOTIFICATION":
-      return state.concat({
-        createdAt: action.createdAt,
-        name: action.name
-      })
+      return {...state, [action.key]: action.value}
     case "DELETE_NOTIFICATION":
-      // TODO: omit notification by ID
-      return state
+      return omit(state, action.id)
     default:
       return state
   }
 }
 
-// TODO
-export const getNotification = (state, id) => {}
+export const getNotification = (state, id) => (
+  find(state.notifications, {"id": id}) || {}
+)
 
-// TODO
-export const getActiveNotifications = (state) => []
+export const getNotifications = (state, eventId) => {
+  const items = state.notifications
 
-// TODO
-export const getNotificationsByEventId = (state, eventId) => []
+  return eventId ? filter(items, {"eventId": eventId}) : items
+}
 
-// TODO
-export const getActiveNotificationsByEventId = (state, eventId) => []
+export const getActiveNotifications = (state, eventId) => {
+  const notifications = getNotifications(state, eventId)
+  const now = Date.now()
+
+  return filter(notifications, (item) =>
+    item.timestamp > now
+  )
+}
 
 export default notificationsReducer
