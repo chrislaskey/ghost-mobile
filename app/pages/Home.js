@@ -1,56 +1,28 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Text, View } from "react-native"
+import { startEvent, stopEvent } from "../actions/events"
 import { getEvent } from "../reducers/events"
-import Page from "../layouts/Page"
 import styles from "../styles"
+import Page from "../layouts/Page"
+import Button from "../components/Button"
 
-// var PushNotification = require('react-native-push-notification')
-
-// PushNotification.configure({
-
-//     // (optional) Called when Token is generated (iOS and Android)
-//     onRegister: function(token) {
-//         console.log( 'TOKEN:', token );
-//     },
-
-//     // (required) Called when a remote or local notification is opened or received
-//     onNotification: function(notification) {
-//         console.log( 'NOTIFICATION:', notification );
-//     },
-
-//     // ANDROID ONLY: GCM Sender ID (optional - not required for local notifications, but is need to receive remote push notifications) 
-//     senderID: "YOUR GCM SENDER ID",
-
-//     // IOS ONLY (optional): default: all - Permissions to register.
-//     permissions: {
-//         alert: true,
-//         badge: true,
-//         sound: true
-//     },
-
-//     // Should the initial notification be popped automatically
-//     // default: true
-//     popInitialNotification: true,
-
-//     /**
-//       * (optional) default: true
-//       * - Specified if permissions (ios) and token (android and ios) will requested or not,
-//       * - if not, you must call PushNotificationsHandler.requestPermissions() later
-//       */
-//     requestPermissions: true,
-// })
-
-const Home = ({ event }) => {
-
-	// PushNotification.localNotificationSchedule({
-  	// message: "My Notification Message",
-  	// date: new Date(Date.now() + (10 * 1000))
-	// })
-
+const Home = ({ event, onStart, onStop }) => {
   return (
     <Page>
-      <Text style={styles.text}>Home</Text>
+      <Text style={ styles.text }>Home</Text>
+      <View>
+        <Text style={ styles.text }>Event ID</Text>
+        <Text style={ styles.text }>{ event.id }</Text>
+        <Text style={ styles.text }>Event Name</Text>
+        <Text style={ styles.text }>{ event.name }</Text>
+        <Text style={ styles.text }>Event Interval</Text>
+        <Text style={ styles.text }>{ event.interval / 1000} seconds</Text>
+        <Text style={ styles.text }>Event Repeat</Text>
+        <Text style={ styles.text }>{ event.repeat }</Text>
+        <Button onPress={ onStart } text="Start" />
+        <Button onPress={ onStop } text="Stop" />
+      </View>
     </Page>
   )
 }
@@ -61,8 +33,9 @@ const mapStateToProps = (state) => ({
   event: getEvent(state)
 })
 
-const mapDispatchToProps = () => ({
-
+const mapDispatchToProps = (dispatch) => ({
+  onStart: (event) => dispatch(startEvent(event)),
+  onStop: (event) => dispatch(stopEvent(event))
 })
 
 export default connect(
