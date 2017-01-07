@@ -6,13 +6,13 @@ export const addEvent = (name) => ({
   name: name
 })
 
-export const startEvent = (event) => {
+export const startEvent = (event) => (dispatch, getState) => {
   console.log("start!")
 
   return {type: "NOOP"}
 }
 
-export const stopEvent = (event) => {
+export const stopEvent = (event) =>  (dispatch, getState) => {
   console.log("stop!")
 
   return {type: "NOOP"}
