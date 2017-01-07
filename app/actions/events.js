@@ -2,8 +2,8 @@ import { map, times } from "lodash"
 import { createNotification, deleteNotification } from "./notifications"
 import { getActiveNotifications } from "../reducers/notifications"
 
-export const addEvent = (name) => ({
-  type: "ADD_EVENT",
+export const createEvent = (name) => ({
+  type: "CREATE_EVENT",
   createdAt: Date.now(),
   name: name
 })
