@@ -20,8 +20,8 @@ const Home = ({ event, onStart, onStop }) => {
         <Text style={ styles.text }>{ event.interval / 1000} seconds</Text>
         <Text style={ styles.text }>Event Repeat</Text>
         <Text style={ styles.text }>{ event.repeat }</Text>
-        <Button onPress={ onStart } text="Start" />
-        <Button onPress={ onStop } text="Stop" />
+        <Button onPress={ () => onStart(event) } text="Start" />
+        <Button onPress={ () => onStop(event) } text="Stop" />
       </View>
     </Page>
   )

@@ -5,13 +5,24 @@ const notificationsReducer = (state = [], action) => {
         createdAt: action.createdAt,
         name: action.name
       })
+    case "DELETE_NOTIFICATION":
+      // TODO: omit notification by ID
+      return state
     default:
       return state
   }
 }
 
-export const getnotifications = (state) => state.notifications
+// TODO
+export const getNotification = (state, id) => {}
 
-export const getNotification = (state) => state.notifications[0]
+// TODO
+export const getActiveNotifications = (state) => []
+
+// TODO
+export const getNotificationsByEventId = (state, eventId) => []
+
+// TODO
+export const getActiveNotificationsByEventId = (state, eventId) => []
 
 export default notificationsReducer
