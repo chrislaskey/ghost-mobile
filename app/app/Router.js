@@ -3,10 +3,12 @@ import { connect } from "react-redux"
 import { getCurrentPath } from "../reducers/paths"
 
 import Home from "../pages/Home"
+import Settings from "../pages/Settings"
 
 const Router = ({path}) => {
   const routes = {
-    "home": <Home />
+    "home": <Home />,
+    "settings": <Settings />
   }
 
   return routes[path.path] || routes["home"]
