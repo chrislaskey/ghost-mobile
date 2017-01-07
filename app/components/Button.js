@@ -4,9 +4,9 @@ import styles from "../styles"
 
 const Button = ({ children, onPress, text }) => (
   <TouchableHighlight onPress={ onPress }>
-    <View>
+    <View style={ styles.button }>
       { children }
-      { text && <Text style={styles.text}>{ text }</Text> }
+      { text && <Text style={ styles.text }>{ text }</Text> }
     </View>
   </TouchableHighlight>
 )

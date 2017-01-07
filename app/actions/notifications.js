@@ -3,16 +3,15 @@ import { shortUuid } from "../helpers/uuid"
 export const createNotification = (eventId, timestamp) => {
   const id = shortUuid()
   // const PushNotification = require("../app/PushNotification").default
-
   // const notification = PushNotification.localNotificationSchedule({
   //   message: "My Notification Message",
-  //   date: new Date(Date.now() + (5 * 1000))
+  //   date: new Date(timestamp)
   // })
 
   const entry = {
     id,
     eventId,
-    // notification
+    // notification,
     timestamp
   }
 

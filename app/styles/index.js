@@ -22,8 +22,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#181818",
   },
+  button: {
+    marginBottom: 30,
+    marginTop: 30,
+  },
   text: {
-    color: "#fff"
+    color: "#fff",
   }
 })
 
