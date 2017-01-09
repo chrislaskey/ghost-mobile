@@ -26,10 +26,6 @@ export const createNotification = (eventId, timestamp) => {
 export const deleteNotification = (notification) => {
   const PushNotification = require("../app/pushNotification").default
 
-  // TODO: need to determine notification id so it can be passed:
-  // https://github.com/zo0r/react-native-push-notification#1-cancellocalnotifications
-  // TODO: Confirm cancelling works. If not, see
-  // https://www.bountysource.com/issues/39723002-pushnotification-cancellocalnotifications-broken
   PushNotification.cancelLocalNotifications({
     id: notification.id
   })
