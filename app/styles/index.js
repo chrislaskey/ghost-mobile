@@ -32,6 +32,28 @@ const layout = {
   }
 }
 
+const navigation = {
+  navigationOverlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    zIndex: 2000
+  },
+  navigation: {
+    backgroundColor: "#fff",
+    position: "absolute",
+    bottom: 0,
+    top: 0,
+    left: -(Math.round(fullWidth * 0.8)),
+    left: 0,
+    width: Math.round(fullWidth * 0.8),
+    zIndex: 2500,
+  }
+}
+
 const titleBar = {
   titleBar: {
     backgroundColor: "#000",
@@ -50,6 +72,7 @@ const styles = StyleSheet.create(
   merge(
     {},
     layout,
+    navigation,
     titleBar
   )
 )
