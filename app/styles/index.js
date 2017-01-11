@@ -51,7 +51,14 @@ const navigation = {
     left: 0,
     width: Math.round(fullWidth * 0.8),
     zIndex: 2500,
-  }
+  },
+  navigationItem: {
+    height: 300,
+  },
+  navigationItemActive: {
+    backgroundColor: "#aaa",
+    height: 300,
+  },
 }
 
 const titleBar = {
