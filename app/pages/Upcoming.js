@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { ListView, Text, View } from "react-native"
 import { isEmpty } from "lodash"
-import { getEvent } from "../reducers/events"
+import { getFirstEvent } from "../reducers/events"
 import { getUpcomingNotifications } from "../reducers/notifications"
 import styles from "../styles"
 import Page from "../layouts/Page"
@@ -54,7 +54,7 @@ Upcoming.displayName = "Upcoming"
 
 const mapStateToProps = (state) => {
   const notifications = getUpcomingNotifications(state)
-  const lookupRelatedEvent = (item) => getEvent(state, item.eventId)
+  const lookupRelatedEvent = (item) => getFirstEvent(state, item.eventId)
 
   return {
     lookupRelatedEvent,

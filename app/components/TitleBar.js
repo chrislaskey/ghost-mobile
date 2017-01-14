@@ -3,17 +3,18 @@ import { connect } from "react-redux"
 import { Text, View } from "react-native"
 import Button from "./Button"
 import { openNavigation } from "../actions/navigation"
+import { updatePath } from "../actions/paths"
 import styles from "../styles"
 
-const TitleBar = ({ onOpenNavigation }) => {
+const TitleBar = ({ openEdit, openNavigation }) => {
   return (
     <View style={ styles.titleBar }>
-      <Button onPress={ onOpenNavigation }>
+      <Button onPress={ openNavigation }>
         <Text style={ styles.text }>Menu</Text>
       </Button>
       <Text style={ styles.text }>Ghost</Text>
-      <Button>
-        <Text style={ styles.text }>+</Text>
+      <Button onPress={ openEdit }>
+        <Text style={ styles.text }>Edit</Text>
       </Button>
     </View>
   )
@@ -26,7 +27,8 @@ const mapStateToProps = () => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onOpenNavigation: () => dispatch(openNavigation())
+  openEdit: () => dispatch(updatePath("edit")),
+  openNavigation: () => dispatch(openNavigation())
 })
 
 export default connect(

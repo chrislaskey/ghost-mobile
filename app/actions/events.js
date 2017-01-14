@@ -1,11 +1,28 @@
-import { map, times } from "lodash"
+import { map, merge, times } from "lodash"
 import { createNotification, deleteNotification } from "./notifications"
 import { getUpcomingNotifications } from "../reducers/notifications"
+import { shortUuid } from "../helpers/uuid"
 
-export const createEvent = (name) => ({
-  type: "CREATE_EVENT",
-  createdAt: Date.now(),
-  name: name
+export const createEvent = (values) => {
+  const id = shortUuid()
+
+  return {
+    type: "CREATE_EVENT",
+    key: id,
+    value: merge({}, values, {
+      id: id,
+      createdAt: Date.now(),
+      updatedAt: Date.now()
+    })
+  }
+}
+
+export const updateEvent = (values) => ({
+  type: "UPDATE_EVENT",
+  key: values.id,
+  value: merge({}, values, {
+    updatedAt: Date.now()
+  })
 })
 
 export const startEvent = (event) => (dispatch) => {

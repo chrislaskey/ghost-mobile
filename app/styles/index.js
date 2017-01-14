@@ -76,12 +76,22 @@ const titleBar = {
   }
 }
 
+const eventForm = {
+  eventFormInput: {
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    width: 300
+  }
+}
+
 const styles = StyleSheet.create(
   merge(
     {},
     layout,
     navigation,
-    titleBar
+    titleBar,
+    eventForm
   )
 )
 

@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { Text, View } from "react-native"
 import { startEvent, stopEvent } from "../actions/events"
-import { getEvent } from "../reducers/events"
+import { getFirstEvent } from "../reducers/events"
 import { getUpcomingNotifications, getNotifications } from "../reducers/notifications"
 import styles from "../styles"
 import Page from "../layouts/Page"
@@ -35,7 +35,7 @@ const Home = ({ upcomingNotifications, event, notifications, onStart, onStop }) 
 Home.displayName = "Home"
 
 const mapStateToProps = (state) => {
-  const event = getEvent(state)
+  const event = getFirstEvent(state)
   const upcomingNotifications = getUpcomingNotifications(state, event.id)
   const notifications = getNotifications(state, event.id)
 
