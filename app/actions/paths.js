@@ -3,3 +3,7 @@ export const updatePath = (path) => ({
   path: path,
   timestamp: Date.now()
 })
+
+export const deletePath = () => ({
+  type: "DELETE_PATH"
+})

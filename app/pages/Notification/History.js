@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { ListView, Text, View } from "react-native"
 import { isEmpty } from "lodash"
-import { getFirstEvent } from "../../reducers/events"
+import { getEvent } from "../../reducers/events"
 import { getPastNotifications } from "../../reducers/notifications"
 import styles from "../../styles"
 import Page from "../../layouts/Page"
@@ -53,7 +53,7 @@ NotificationHistory.displayName = "NotificationHistory"
 
 const mapStateToProps = (state) => {
   const notifications = getPastNotifications(state)
-  const lookupRelatedEvent = (item) => getFirstEvent(state, item.eventId)
+  const lookupRelatedEvent = (item) => getEvent(state, item.eventId)
 
   return {
     lookupRelatedEvent,

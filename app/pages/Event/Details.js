@@ -2,7 +2,8 @@ import React from "react"
 import { connect } from "react-redux"
 import { Text, View } from "react-native"
 import { startEvent, stopEvent } from "../../actions/events"
-import { getFirstEvent } from "../../reducers/events"
+import { updatePath } from "../../actions/paths"
+import { getEvent } from "../../reducers/events"
 import {
   getUpcomingNotifications,
   getNotifications
@@ -11,7 +12,7 @@ import styles from "../../styles"
 import Page from "../../layouts/Page"
 import Button from "../../components/Button"
 
-const EventDetails = ({ upcomingNotifications, event, notifications, onStart, onStop }) => {
+const EventDetails = ({ upcomingNotifications, event, notifications, onEdit, onStart, onStop }) => {
   return (
     <Page>
       <Text style={ styles.text }>Event Details</Text>
@@ -25,6 +26,7 @@ const EventDetails = ({ upcomingNotifications, event, notifications, onStart, on
         <Text style={ styles.text }>{ event.interval / 1000} seconds</Text>
         <Text style={ styles.text }>Event Repeat</Text>
         <Text style={ styles.text }>{ event.repeat }</Text>
+        <Button onPress={ () => onEdit(event) } text="Edit" />
         <Text style={ styles.text }>Active Notifications</Text>
         <Text style={ styles.text }>{ upcomingNotifications.length }</Text>
         <Text style={ styles.text }>Total Notifications</Text>
@@ -37,8 +39,9 @@ const EventDetails = ({ upcomingNotifications, event, notifications, onStart, on
 
 EventDetails.displayName = "EventDetails"
 
-const mapStateToProps = (state) => {
-  const event = getFirstEvent(state)
+const mapStateToProps = (state, {routing}) => {
+  const id = routing[1]
+  const event = getEvent(state, id)
   const upcomingNotifications = getUpcomingNotifications(state, event.id)
   const notifications = getNotifications(state, event.id)
 
@@ -50,6 +53,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  onEdit: (event) => dispatch(updatePath(`events/${event.id}/edit`)),
   onStart: (event) => dispatch(startEvent(event)),
   onStop: (event) => dispatch(stopEvent(event))
 })

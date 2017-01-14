@@ -29,9 +29,7 @@ const Router = ({ currentPath }) => {
     const match = path.match(pattern)
 
     if (match) {
-      console.log(path, key, !!match)
-
-      page = <Component route={match} />
+      page = <Component routing={match} />
       return false
     }
   })

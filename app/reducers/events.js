@@ -1,4 +1,4 @@
-import { keys, values } from "lodash"
+import { values } from "lodash"
 
 const eventsReducer = (state = {}, action) => {
   switch (action.type) {
@@ -13,11 +13,5 @@ const eventsReducer = (state = {}, action) => {
 export const getEvents = (state) => values(state.events)
 
 export const getEvent = (state, id) => state.events[id] || {}
-
-export const getFirstEvent = (state) => {
-  const first = keys(state.events)[0]
-
-  return state.events[first]
-}
 
 export default eventsReducer

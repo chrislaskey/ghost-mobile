@@ -5,6 +5,8 @@ const pathsReducer = (state = [], action) => {
         path: action.path,
         timestamp: action.timestamp
       })
+    case "DELETE_PATH":
+      return state.slice(0, -1)
     default:
       return state
   }

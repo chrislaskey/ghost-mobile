@@ -1,20 +1,24 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Text, View } from "react-native"
+import { isEmpty } from "lodash"
 import Button from "./Button"
 import { openNavigation } from "../actions/navigation"
-import { updatePath } from "../actions/paths"
+import { deletePath } from "../actions/paths"
+import { getCurrentPath } from "../reducers/paths"
 import styles from "../styles"
 
-const TitleBar = ({ openNew, openNavigation }) => {
+const TitleBar = ({ hasHistory, navigateBack, openNavigation }) => {
   return (
     <View style={ styles.titleBar }>
-      <Button onPress={ openNavigation }>
-        <Text style={ styles.text }>Menu</Text>
+      <Button onPress={ navigateBack }>
+        { hasHistory &&
+          <Text style={ styles.text }>Back</Text>
+        }
       </Button>
       <Text style={ styles.text }>Ghost</Text>
-      <Button onPress={ openNew }>
-        <Text style={ styles.text }>New</Text>
+      <Button onPress={ openNavigation }>
+        <Text style={ styles.text }>Menu</Text>
       </Button>
     </View>
   )
@@ -22,12 +26,12 @@ const TitleBar = ({ openNew, openNavigation }) => {
 
 TitleBar.displayName = "TitleBar"
 
-const mapStateToProps = () => ({
-
+const mapStateToProps = (state) => ({
+  hasHistory: !isEmpty(getCurrentPath(state))
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  openNew: () => dispatch(updatePath("events/new")),
+  navigateBack: () => dispatch(deletePath()),
   openNavigation: () => dispatch(openNavigation())
 })
 
