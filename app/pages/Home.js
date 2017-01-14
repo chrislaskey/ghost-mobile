@@ -3,12 +3,12 @@ import { connect } from "react-redux"
 import { Text, View } from "react-native"
 import { startEvent, stopEvent } from "../actions/events"
 import { getEvent } from "../reducers/events"
-import { getActiveNotifications, getNotifications } from "../reducers/notifications"
+import { getUpcomingNotifications, getNotifications } from "../reducers/notifications"
 import styles from "../styles"
 import Page from "../layouts/Page"
 import Button from "../components/Button"
 
-const Home = ({ activeNotifications, event, notifications, onStart, onStop }) => {
+const Home = ({ upcomingNotifications, event, notifications, onStart, onStop }) => {
   return (
     <Page>
       <Text style={ styles.text }>Home</Text>
@@ -23,7 +23,7 @@ const Home = ({ activeNotifications, event, notifications, onStart, onStop }) =>
         <Text style={ styles.text }>Event Repeat</Text>
         <Text style={ styles.text }>{ event.repeat }</Text>
         <Text style={ styles.text }>Active Notifications</Text>
-        <Text style={ styles.text }>{ activeNotifications.length }</Text>
+        <Text style={ styles.text }>{ upcomingNotifications.length }</Text>
         <Text style={ styles.text }>Total Notifications</Text>
         <Text style={ styles.text }>{ notifications.length }</Text>
         <Button onPress={ () => onStop(event) } text="Stop" />
@@ -36,11 +36,11 @@ Home.displayName = "Home"
 
 const mapStateToProps = (state) => {
   const event = getEvent(state)
-  const activeNotifications = getActiveNotifications(state, event.id)
+  const upcomingNotifications = getUpcomingNotifications(state, event.id)
   const notifications = getNotifications(state, event.id)
 
   return {
-    activeNotifications,
+    upcomingNotifications,
     event,
     notifications
   }

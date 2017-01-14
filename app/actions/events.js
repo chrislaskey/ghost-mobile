@@ -1,6 +1,6 @@
 import { map, times } from "lodash"
 import { createNotification, deleteNotification } from "./notifications"
-import { getActiveNotifications } from "../reducers/notifications"
+import { getUpcomingNotifications } from "../reducers/notifications"
 
 export const createEvent = (name) => ({
   type: "CREATE_EVENT",
@@ -25,7 +25,7 @@ export const startEvent = (event) => (dispatch) => {
 
 export const stopEvent = (event) => (dispatch, getState) => {
   const state = getState()
-  const notifications = getActiveNotifications(state, event.id)
+  const notifications = getUpcomingNotifications(state, event.id)
 
   map(notifications, (notification) => {
     dispatch(

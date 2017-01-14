@@ -50,14 +50,15 @@ const navigation = {
     left: -(Math.round(fullWidth * 0.8)),
     left: 0,
     width: Math.round(fullWidth * 0.8),
+    paddingTop: 30,
     zIndex: 2500,
   },
   navigationItem: {
-    height: 300,
+    height: 50,
   },
   navigationItemActive: {
     backgroundColor: "#aaa",
-    height: 300,
+    height: 50,
   },
 }
 

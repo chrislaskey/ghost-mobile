@@ -21,12 +21,21 @@ export const getNotifications = (state, eventId) => {
   return eventId ? filter(items, {"eventId": eventId}) : items
 }
 
-export const getActiveNotifications = (state, eventId) => {
+export const getUpcomingNotifications = (state, eventId) => {
   const notifications = getNotifications(state, eventId)
   const now = Date.now()
 
   return filter(notifications, (item) =>
     item.timestamp > now
+  )
+}
+
+export const getPastNotifications = (state, eventId) => {
+  const notifications = getNotifications(state, eventId)
+  const now = Date.now()
+
+  return filter(notifications, (item) =>
+    item.timestamp <= now
   )
 }
 
