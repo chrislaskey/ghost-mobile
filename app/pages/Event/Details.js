@@ -1,17 +1,20 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Text, View } from "react-native"
-import { startEvent, stopEvent } from "../actions/events"
-import { getFirstEvent } from "../reducers/events"
-import { getUpcomingNotifications, getNotifications } from "../reducers/notifications"
-import styles from "../styles"
-import Page from "../layouts/Page"
-import Button from "../components/Button"
+import { startEvent, stopEvent } from "../../actions/events"
+import { getFirstEvent } from "../../reducers/events"
+import {
+  getUpcomingNotifications,
+  getNotifications
+} from "../../reducers/notifications"
+import styles from "../../styles"
+import Page from "../../layouts/Page"
+import Button from "../../components/Button"
 
-const Home = ({ upcomingNotifications, event, notifications, onStart, onStop }) => {
+const EventDetails = ({ upcomingNotifications, event, notifications, onStart, onStop }) => {
   return (
     <Page>
-      <Text style={ styles.text }>Home</Text>
+      <Text style={ styles.text }>Event Details</Text>
       <View>
         <Button onPress={ () => onStart(event) } text="Start" />
         <Text style={ styles.text }>Event ID</Text>
@@ -32,7 +35,7 @@ const Home = ({ upcomingNotifications, event, notifications, onStart, onStop }) 
   )
 }
 
-Home.displayName = "Home"
+EventDetails.displayName = "EventDetails"
 
 const mapStateToProps = (state) => {
   const event = getFirstEvent(state)
@@ -54,4 +57,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home)
+)(EventDetails)

@@ -1,12 +1,12 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Text, TextInput, View } from "react-native"
-import { updateEvent } from "../actions/events"
-import { updatePath } from "../actions/paths"
-import { getFirstEvent } from "../reducers/events"
-import styles from "../styles"
-import Page from "../layouts/Page"
-import Button from "../components/Button"
+import { updateEvent } from "../../actions/events"
+import { updatePath } from "../../actions/paths"
+import { getFirstEvent } from "../../reducers/events"
+import styles from "../../styles"
+import Page from "../../layouts/Page"
+import Button from "../../components/Button"
 
 const EventForm = ({ event, onSubmit }) => {
   const formValues = {
@@ -24,15 +24,16 @@ const EventForm = ({ event, onSubmit }) => {
     <Page>
       <Text style={ styles.text }>Edit</Text>
       <View>
-
         <Text style={ styles.text }>Name</Text>
         <TextInput
+          autoFocus={ true }
           defaultValue={ formValues.name }
           placeholder="name"
           onChangeText={ (value) => updateValue("name", value) }
           style={ styles.eventFormInput }
         />
-
+      </View>
+      <View>
         <Text style={ styles.text }>Interval (seconds)</Text>
         <TextInput
           defaultValue={ (formValues.interval / 1000).toString() }
@@ -40,7 +41,8 @@ const EventForm = ({ event, onSubmit }) => {
           onChangeText={ (value) => updateValue("interval", parseInt(value || 0) * 1000) }
           style={ styles.eventFormInput }
         />
-
+      </View>
+      <View>
         <Text style={ styles.text }>Number of times to repeat</Text>
         <TextInput
           defaultValue={ formValues.repeat.toString() }
@@ -49,11 +51,11 @@ const EventForm = ({ event, onSubmit }) => {
           onChangeText={ (value) => updateValue("repeat", parseInt(value || 0)) }
           style={ styles.eventFormInput }
         />
-
+      </View>
+      <View>
         <Button onPress={ () => onSubmit(formValues) }>
           <Text style={ styles.text }>Submit</Text>
         </Button>
-
       </View>
     </Page>
   )

@@ -6,15 +6,15 @@ import { openNavigation } from "../actions/navigation"
 import { updatePath } from "../actions/paths"
 import styles from "../styles"
 
-const TitleBar = ({ openEdit, openNavigation }) => {
+const TitleBar = ({ openNew, openNavigation }) => {
   return (
     <View style={ styles.titleBar }>
       <Button onPress={ openNavigation }>
         <Text style={ styles.text }>Menu</Text>
       </Button>
       <Text style={ styles.text }>Ghost</Text>
-      <Button onPress={ openEdit }>
-        <Text style={ styles.text }>Edit</Text>
+      <Button onPress={ openNew }>
+        <Text style={ styles.text }>New</Text>
       </Button>
     </View>
   )
@@ -27,7 +27,7 @@ const mapStateToProps = () => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  openEdit: () => dispatch(updatePath("edit")),
+  openNew: () => dispatch(updatePath("events/new")),
   openNavigation: () => dispatch(openNavigation())
 })
 

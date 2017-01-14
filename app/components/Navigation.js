@@ -15,8 +15,8 @@ class Navigation extends Component {
 
     const items = {
       "Events": "events",
-      "Upcoming": "upcoming",
-      "History": "history",
+      "Upcoming": "notifications/upcoming",
+      "History": "notifications/history",
       "Settings": "settings"
     }
     
