@@ -30,6 +30,7 @@ const Router = ({ currentPath }) => {
 
     if (match) {
       page = <Component routing={match} />
+
       return false
     }
   })
